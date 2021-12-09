@@ -11,7 +11,7 @@ if (Number.isInteger(value)) {
 //1.	Если а – четное посчитать а*б, иначе а+б
 function fEven(a,b) {
     if (validationNum(a) && validationNum(b)) {
-        if ((a % 2) == 0)
+        if ((a % 2) ==s= 0)
             return a * b;
         else return a + b;
     } else
@@ -33,36 +33,52 @@ function  fCoard(x,y) {
 
 //3.	Найти суммы только положительных из трех чисел
 function fSum(a,b,c) {
-   let sum=0;
-    if (a>0) sum+=a;
-    if (b>0) sum+=b;
-    if (c>0) sum+=c;
+    if (!validationNum(a) || !validationNum(b) || !validationNum(c)) {
+        return false;
+    }
+    let sum = 0;
+    if (a > 0) sum += a;
+    if (b > 0) sum += b;
+    if (c > 0) sum += c;
     return sum;
 }
 
 //4.	Посчитать выражение (макс(а*б*с, а+б+с))+3
 function fMax(a,b,c) {
-   let exMul=a*b*c;
-   let exSum=a+b+c;
-   if (exMul>exSum) return exMul+3;
-   else return exSum+3;
+    if (!validationNum(a) || !validationNum(b) || !validationNum(c)) {
+        return false;
+    }
+    let exMul = a * b * c;
+    let exSum = a + b + c;
+    if (exMul > exSum) return exMul + 3;
+    else return exSum + 3;
 }
 
 //5.	Написать программу определения оценки студента по его рейтингу, на основе следующих правил
 function fGrade(rate) {
-    if (rate==0 && rate<=19)
+    if (!validationNum(rate)) {
+        return false;
+    }
+    if (rate >= 0 && rate <= 19) {
         return 'F';
-    else if (rate=>20 && rate<=39)
-        return  'E';
-    else if (rate=>40 && rate<=59)
+    }
+    else if (rate >= 20 && rate <= 39) {
+        return 'E';
+    }
+    else if (rate >= 40 && rate <= 59) {
         return 'D';
-    else if (rate=>60 && rate<=74)
+    }
+    else if (rate >= 60 && rate <= 74) {
         return 'C';
-    else if (rate=>75 && rate<=89)
+    }
+    else if (rate >= 75 && rate <= 89) {
         return 'B';
-    else if (rate=>90 && rate<=100)
+    }
+    else if (rate >= 90 && rate <= 100) {
         return 'A';
-    else return 'error'
+    }
+    else return false;
 }
 
-module.exports ={fEven,fCoard,fSumб, fGrade};
+
+module.exports ={fEven,fCoard,fSum, fMax,fGrade};
