@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+}
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.container {
+    max-width: 400px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    border-radius: 20px;
+    margin: 50px auto 0px;
+    padding: 20px;
+    background: linear-gradient(rgb(44, 204, 196), rgb(234, 253, 252));
+}
+.condition, .inputData {
+    text-align: center;
+}
