@@ -5,6 +5,9 @@ p {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+input {
+    border-radius: 5px;
+}
 .container {
     max-width: 400px;
     border-width: 2px;
@@ -14,7 +17,7 @@ p {
     border-radius: 20px;
     margin: 50px auto 0px;
     padding: 20px;
-    background: linear-gradient(rgb(44, 204, 196), rgb(234, 253, 252));
+    /*background: linear-gradient(rgb(44, 204, 196), rgb(234, 253, 252));*/
 }
 .condition, .inputData {
     text-align: center;
