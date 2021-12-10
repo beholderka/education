@@ -104,12 +104,12 @@ function checkUserNumber() {
             `задуманное число за ${countAttempts} попыток.`;
         countAttempts = valueAttempts;
         return true;
-    } else if ((userNumber >= (valuePCNumber - 20)) && (userNumber <= (valuePCNumber + 20))) {
+    } else if ((userNumber >= (valuePCNumber - valuePCNumber*0.2)) && (userNumber <= (valuePCNumber + valuePCNumber*0.20))) {
         document.getElementById('hintText').innerText = `Не угадал, но ` +
             `теплее!!! Осталось ${valueAttempts - countAttempts} попыток.`;
 
     } else if (countAttempts === 1) {
-        document.getElementById('hintText').innerText = '';
+        document.getElementById('hintText').innerText = `Осталось ${valueAttempts - countAttempts} попыток.`;
     } else {
         document.getElementById('hintText').innerText = `Не угадал, ` +
             `холоднее!!! Осталось ${valueAttempts - countAttempts} попыток.`;
