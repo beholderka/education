@@ -79,6 +79,10 @@ input[type="button"] {
     padding-bottom: 5px;
 }
 input[type="button"]:hover {
-    background-color: #1E0033; /*цвет текста и указателя*/
+    background-color: #1E0033;
     color: #bdbdbd;
+}
+input[type="button"]:disabled {
+    background-color: #1E0033;
+    color: #505050;
 }
