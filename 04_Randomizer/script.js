@@ -12,7 +12,7 @@ const button = document.querySelector('.button-generate')
 
 /*Формируем случайное число в диапазоне*/
 function randomNumber(minValue,maxValue) {
-    return Math.round(Math.random() * (maxValue - minValue) + minValue);;
+    return Math.round(Math.random() * (maxValue - minValue) + minValue);
 }
 
 /*Возвращаем новое случайное число*/
