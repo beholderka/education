@@ -1,16 +1,20 @@
+@font-face {
+    font-family: Pompadur; /* Гарнитура шрифта */
+    src: url(font/NeutralFace.otf); /* Путь к файлу со шрифтом */
+}
 * {
     padding: 0;
     margin: 0;
-    font-family: cursive;
+    font-family:Pompadur, "Bodoni MT",'Monotype Corsiva',Arial;
 }
 body {
-    background-color: #3A164E;
+    background-image: linear-gradient(90deg, #aea9d0,#716da6);
 }
 .content {
     width: 550px;
     height: 550px;
     margin: 70px auto;
-    background-color: #656500;
+    background-color: #917898;
     text-align:center;
     border-radius: 10%;
     box-shadow: 20px 15px 15px #2C0144;
@@ -22,7 +26,7 @@ input, .label-text-content{
 }
 .label-text-content, .label-text-content-result {
     padding-bottom: 5px;
-    font-size: 25px;
+    font-size: 20px;
 }
 h1 {
     text-align: center;
@@ -35,7 +39,6 @@ h1 {
 input[type="number"] {
     display: block;
     width: 70%;
-    font-size: 30px;
     height: calc(2.25rem + 2px);
     padding: 0.375rem 0.75rem;
     font-family: inherit;
@@ -47,6 +50,7 @@ input[type="number"] {
     border: 1px solid #3A164E;
     border-radius: 10px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: 20px;
 }
 input[type="number"]::placeholder {
     color: rgba(85, 24, 118, 0.57);
