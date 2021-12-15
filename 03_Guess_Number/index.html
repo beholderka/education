@@ -17,15 +17,15 @@
         <p>Выберите количество попыток:</p>
         <input class="numberData" id="numberOfAttempts" type="number" value="5" min="1" max="15">
         <p id="hintNumberData"> </p>
-        <input type="button" value="SAVE" onclick="saveUserSettings()">
+        <input type="button" value="Сохранить" onclick="saveUserSettings()">
     </div>
     <div class="inputData">
         <p>Привет, я загадал число от <label id="valueRangeFrom">1</label> до <label id="valueRangeUpDo">100</label> вашего диапазона.
             Попробуй угадать его за <label id="valueNumberOfAttempts">5</label> попыток!</p>
         <input type="text" id="inputValue">
-        <input type="button" value="GENERATE" onclick="checkUserNumber()">
+        <input type="button" value="Ок" onclick="checkUserNumber()">
         <p id="hintText"></p>
-        <input type="button" value="EXIT" onclick="newGame()">
+        <input type="button" value="Выход" onclick="newGame()">
     </div>
 </div>
 <script src="index.js"></script>
