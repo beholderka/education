@@ -21,7 +21,7 @@ gulp.task('copy:all', function (cb) {
 
 });
 gulp.task('watch', function () {
-    gulp.watch(['./src/**/*.scss', './src/**/*.html'], gulp.series(['clean', 'sass', 'copy:html']));
+    gulp.watch(['./src/**/*.scss', './src/**/*.html'], gulp.series(['clean', 'sass', 'copy:all']));
 });
 
 

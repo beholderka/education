@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,31 +6,34 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="container__body">
-    <div class="container__condition">
+<menu class="container">
+    <section class="container__condition">
         <p class="container__text">Выберите диапазон чисел:</p>
-        <div class="input__text">
-        <label class="container__text">от</label>
-        <input class="container__input" id="rangeFrom" type="number" value="1" min="1" max="200"></input>
-        <label class="container__text">до</label>
-        <input class="container__input" id="rangeUpDo" type="number" value="100" min="1" max="200"></input>
-        </div>
+        <label><label class="container__text">от
+            <input class="container__input container__input--number" id="rangeFrom" type="number" value="1" min="1"
+                   max="200"></label>
+            <label class="container__text">до
+                <input class="container__input container__input--number" id="rangeUpDo" type="number" value="100"
+                       min="1"
+                       max="200"></label></label>
         <p class="container__text">Выберите количество попыток:</p>
-        <input class="container__input" id="numberOfAttempts" type="number" value="5" min="1" max="15"></input>
-        <p class="container__text" id="hintNumberData"> </p>
-        <input class="container__input" type="button" value="Сохранить" onclick="saveUserSettings()"></input>
-    </div>
-    <div class="container__solution">
-        <p  class="container__text">Привет, я загадал число от <label  class="container__text" id="valueRangeFrom">1</label> до <label class="container__text" id="valueRangeUpDo">100</label> вашего диапазона.
-            Попробуй угадать его за <label  class="container__text" id="valueNumberOfAttempts">5</label> попыток!</p>
-        <input class="container__input" type="text" id="inputValue"></input>
-        <input class="container__input" type="button" value="Ок" onclick="checkUserNumber()"></input>
-        <p  class="container__text" id="hintText"></p>
-        <input class="container__input" type="button" value="Выход" onclick="newGame()"></input>
-    </div>
-    </div>
-</div>
+        <input class="container__input container__input--number" id="numberOfAttempts" type="number" value="5" min="1"
+               max="15">
+        <p class="container__text" id="hintNumberData"></p>
+        <input class="container__input container__input--button" type="button" value="Сохранить"
+               onclick="saveUserSettings()">
+    </section>
+    <section class="container__solution">
+        <p class="container__text">Привет, я загадал число от <label class="container__text"
+                                                                     id="valueRangeFrom">1</label> до <label
+                class="container__text" id="valueRangeUpDo">100</label> вашего диапазона.
+            Попробуй угадать его за <label class="container__text" id="valueNumberOfAttempts">5</label> попыток!</p>
+        <input class="container__input" type="text" id="inputValue">
+        <input class="container__input container__input--button" type="button" value="Ок" onclick="checkUserNumber()">
+        <p class="container__text" id="hintText"></p>
+        <input class="container__input container__input--button" type="button" value="Выход" onclick="newGame()">
+    </section>
+</menu>
 <script src="index.js"></script>
 </body>
 </html>
