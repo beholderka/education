@@ -1,0 +1,76 @@
+@font-face {
+  font-family: Pompadur; /* Гарнитура шрифта */
+  src: url(font/Laptev_Brush.otf); /* Путь к файлу со шрифтом */
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family:Pompadur;
+  font-size: 20px;
+  background-image: linear-gradient(180deg , rgba(231, 151, 207, 0.47), rgba(180, 163, 229, 0.46));
+  input:nth-of-type(2n) {
+    border: 3px solid #7f00a5;
+  }
+  &__body{
+    background-image: linear-gradient(325deg , #e797cf 50%, #b4a3e5 50%);
+    box-shadow: 0 0 15px #8d8788;
+  }
+  &__input {
+    background: white;
+    font-family:Pompadur;
+    font-size: 20px;
+  }
+  &__input:disabled {
+    background: #505050;
+  }
+  &__input[type="button"]:hover {
+    box-shadow: 0 0 10px #505050;
+  }
+  &__input:focus {
+    outline:2px solid #442d3f;
+  }
+  &__input[type="button"] {
+    font-size: 25px;
+    border: 1px solid #1E0033;
+    box-shadow: none;
+    width: 150px;
+  }&__input[type="button"]:focus {
+  outline: none;
+     border: 1px solid #1E0033;
+     box-shadow: none;
+   }
+  &__text {
+    margin: 10px 0 0 0;
+  }
+  &__condition {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__solution{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .container__input {
+      margin: 10px 0 0 0;
+    }
+    .container__text {
+      width: 400px;
+    }
+  }
+
+}
+
