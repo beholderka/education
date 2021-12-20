@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Randomizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="container">
+     <div class="container__body">
+     <h1 class="unselectable">Randomizer</h1>
+     <label class="container__text unselectable" for="value-min">MIN </label>
+     <input class="container__input" id="value-min" type="number" placeholder="Input min">
+     <label class="container__text unselectable" for="value-max">MAX </label>
+     <input class="container__input" id="value-max" type="number" placeholder="Input max">
+     <p class="container__text unselectable"></p>
+     <input class="container__input button-generate"   type="button" value="Generate" onclick="validateRangeValue()">
+     <p class="container__text unselectable">Generate number: <label class="container__text value-result"> </label></p>
+     <input class="container__input" type="button" value="Reset" onclick="resetRandom()">
+ </div>
+ </div>
+<script src="script.js"></script>
+</body>
+</html>
