@@ -1,10 +1,6 @@
 
 function validationNum(value) {
-    if (Number.isInteger(value)) {
-        return true;
-    } else {
-        return false;
-    }
+    return Number.isInteger(value);
 }
 
 //1.	Найти сумму четных чисел и их количество в диапазоне от 1 до 99
@@ -17,7 +13,7 @@ function fSumEval() {
             countEval++;
         }
     }
-    return 'Sum: ' + Sum + '; Count: ' + countEval;
+    return [Sum,countEval];
 }
 
 //2.	Проверить простое ли число? (число называется простым, если оно делится только само на себя и на 1)'
@@ -26,7 +22,7 @@ function fPrime(a) {
         for (let i = 2; i < a; i++) {
             if (a % i === 0) return false;
         }
-        if (a != 2 && a > 0) {
+        if (a !== 2 && a > 0) {
             return true;
         }
     }
@@ -60,7 +56,7 @@ function fSqRootBinary(key)
     let prev = 0;
     for (;;) {
         let mid = (min + max) / 2;
-        if ((min + max) % 2 != 0)
+        if ((min + max) % 2 !== 0)
             mid -= 0.5;
         if (prev === mid)
             return mid;
@@ -98,7 +94,7 @@ function  fSumNumber(n) {
     }
     let sum = 0;
     let temp = 0;
-    while (n != 0) {
+    while (n !== 0) {
         temp = n % 10;
         n = (n - temp) / 10;
         sum += temp;
@@ -117,7 +113,7 @@ function  fReflection(n) {
     }
     let number='';
     let temp=0;
-    while (n!=0)
+    while (n!==0)
     {
         temp= n%10;
         n =(n-temp)/10;

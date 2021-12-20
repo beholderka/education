@@ -1,17 +1,11 @@
-
-
 function validationNum(value) {
-if (Number.isInteger(value)) {
-    return true;
-} else {
-    return false;
-}
+    return Number.isInteger(value);
 }
 
 //1.	Если а – четное посчитать а*б, иначе а+б
-function fEven(a,b) {
+function fEven(a, b) {
     if (validationNum(a) && validationNum(b)) {
-        if ((a % 2) ==s= 0)
+        if ((a % 2) === 0)
             return a * b;
         else return a + b;
     } else
@@ -19,7 +13,7 @@ function fEven(a,b) {
 }
 
 //2.	Определить какой четверти принадлежит точка с координатами (х,у)
-function  fCoard(x,y) {
+function fCoard(x, y) {
     if (validationNum(x) && validationNum(y)) {
         if (x > 0 && y > 0) return 1;
         else if (x > 0 && y < 0) return 4;
@@ -32,7 +26,7 @@ function  fCoard(x,y) {
 }
 
 //3.	Найти суммы только положительных из трех чисел
-function fSum(a,b,c) {
+function fSum(a, b, c) {
     if (!validationNum(a) || !validationNum(b) || !validationNum(c)) {
         return false;
     }
@@ -44,7 +38,7 @@ function fSum(a,b,c) {
 }
 
 //4.	Посчитать выражение (макс(а*б*с, а+б+с))+3
-function fMax(a,b,c) {
+function fMax(a, b, c) {
     if (!validationNum(a) || !validationNum(b) || !validationNum(c)) {
         return false;
     }
@@ -61,24 +55,18 @@ function fGrade(rate) {
     }
     if (rate >= 0 && rate <= 19) {
         return 'F';
-    }
-    else if (rate >= 20 && rate <= 39) {
+    } else if (rate >= 20 && rate <= 39) {
         return 'E';
-    }
-    else if (rate >= 40 && rate <= 59) {
+    } else if (rate >= 40 && rate <= 59) {
         return 'D';
-    }
-    else if (rate >= 60 && rate <= 74) {
+    } else if (rate >= 60 && rate <= 74) {
         return 'C';
-    }
-    else if (rate >= 75 && rate <= 89) {
+    } else if (rate >= 75 && rate <= 89) {
         return 'B';
-    }
-    else if (rate >= 90 && rate <= 100) {
+    } else if (rate >= 90 && rate <= 100) {
         return 'A';
-    }
-    else return false;
+    } else return false;
 }
 
 
-module.exports ={fEven,fCoard,fSum, fMax,fGrade};
+module.exports = {fEven, fCoard, fSum, fMax, fGrade};
