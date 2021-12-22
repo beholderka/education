@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "jest": "^27.4.5",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "name": "02_Stars",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}

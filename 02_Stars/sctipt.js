@@ -1,112 +1,104 @@
 const lengthMatrix = 7;
 
-console.log(showMatrixOne())
-console.log(showMatrixTwo())
-console.log(showMatrixThree())
-console.log(showMatrixFour())
-console.log(showMatrixFive())
-console.log(showMatrixSix())
-console.log(showMatrixSeven())
-console.log(showMatrixNine())
-console.log(showMatrixEight())
 
 function showMatrixOne() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray='';
         for (let j = 0; j < lengthMatrix; j++) {
-            stringArray=stringArray+' * ';
+            stringArray = stringArray + ' * ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
+
 function showMatrixTwo() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
             if ((i === 0) || (j === 0) || (i === lengthMatrix - 1) || (j === lengthMatrix - 1))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
-
+console.log(showMatrixTwo())
 function showMatrixThree() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
-            if ((i === 0) || (j === 0) || (i+j===lengthMatrix-1))
+            if ((i === 0) || (j === 0) || (i + j === lengthMatrix - 1))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixFour() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
-            if ((i === lengthMatrix-1) || (j === 0) || (i===j))
+            if ((i === lengthMatrix - 1) || (j === 0) || (i === j))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixFive() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
-            if ((i === lengthMatrix-1) || (j === lengthMatrix-1) || (i+j===lengthMatrix-1))
+            if ((i === lengthMatrix - 1) || (j === lengthMatrix - 1) || (i + j === lengthMatrix - 1))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixSix() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
-            if ((i === 0) || (j === lengthMatrix-1) || (i===j))
+            if ((i === 0) || (j === lengthMatrix - 1) || (i === j))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixSeven() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
-            if ((i + j === lengthMatrix-1) || (i===j))
+            if ((i + j === lengthMatrix - 1) || (i === j))
                 stringArray = stringArray + ' * ';
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixEight() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
             if (((i + j === lengthMatrix - 1)
                 || (i === j)
@@ -116,26 +108,35 @@ function showMatrixEight() {
             else
                 stringArray = stringArray + '   ';
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
 
 function showMatrixNine() {
+    let stringArray = '';
     for (let i = 0; i < lengthMatrix; i++) {
-        let stringArray = '';
         for (let j = 0; j < lengthMatrix; j++) {
             if (((i + j === lengthMatrix - 1)
                 || (i === j)
                 || (i === lengthMatrix - 1))
                 && ((lengthMatrix - 1) / 2 <= i)) {
                 stringArray = stringArray + ' * ';
-            }
-            else {
+            } else {
                 stringArray = stringArray + '   ';
             }
         }
-        console.log(stringArray);
+        stringArray = stringArray + '\n';
     }
-    return '';
+    return stringArray;
 }
+
+module.exports.showMatrixOne=showMatrixOne;
+module.exports.showMatrixTwo=showMatrixTwo;
+module.exports.showMatrixThree=showMatrixThree;
+module.exports.showMatrixFour=showMatrixFour;
+module.exports.showMatrixFive=showMatrixFive;
+module.exports.showMatrixSix=showMatrixSix;
+module.exports.showMatrixSeven=showMatrixSeven;
+module.exports.showMatrixEight=showMatrixEight;
+module.exports.showMatrixNine=showMatrixNine;
