@@ -95,6 +95,7 @@ function getNextPalindrome1(number) {
     if (String(number).length < 2) {
         return 11;
     }
+
     for (let i = number + 1; ; i++) {
         if (String(i) === reverse(i)) {
             return i
@@ -102,16 +103,9 @@ function getNextPalindrome1(number) {
     }
 }
 
-function reversNum(n) {
-    n = Math.abs(n);
-    let number = '';
-    let temp = 0;
-    while (n !== 0) {
-        temp = n % 10;
-        n = (n - temp) / 10;
-        number = number + temp;
-    }
-    return Number(number);
+
+function reversNum(number) {
+    return Number(String(number).split('').reverse().join(''));
 }
 
 function halfNum(number) {
@@ -121,51 +115,34 @@ function halfNum(number) {
 function getNextPalindrome(number) {
     let result;
     //если числу не хватает 1, чтоб увеличится на разряд - увлечиваю
+    if (String(number).length < 2) {
+        return 11;
+    }
     if (String(number).length < String(number + 1).length) {
         number = number + 1;
     }
     // если длина числа четная
     if (String(number).length % 2 === 0) {
-        //получаем половину числа (первую половину)
         let halfNumber = halfNum(number);
-        //получаем зеркальное число АБ БА
-        //halfNumber умножаем на 10 в стенпени длины halfNumber
-        // АБ * 10^2 = AБ00 + БА - реверс halfNumber
         result = halfNumber * 10 ** (String(halfNumber).length)
             + reversNum(halfNumber);
-        //пока результ меньше или равен числу текущему
-        while (result <= number) {
-            //увеличиваем halfNumber + 1
+        if (result <= number) {
             halfNumber = halfNumber + 1;
-            //halfNumber умножаем на 10 в стенпени длины halfNumber
-            // АБ * 10^2 = AБ00 + БА - реверс halfNumber
             result = halfNumber * 10 ** (String(halfNumber).length)
                 + reversNum(halfNumber);
         }
         //если длина числа не четная
     } else {
-        //получаем половину числа, при этом делим число на 10, чтоб количество разрядов стало четным
         let halfNumber = halfNum(Math.trunc(number / 10));
-        //получаем среднее число, которое не попало в половину
-        //преобразую number к строке, где позиция digit Math.trunc(String(number).length / 2)
         let digit = Number(String(number)[Math.trunc(String(number).length / 2)]);
-        //halfNumber умножаем на 10 в стенпени длины halfNumber + 1
-        //digit умножаем на 10 в стенпени длины halfNumber
-        //AБВПК
-        // АБ * 10^(2+1) = AБ000
-        // В * 10^2 = В00
         result = halfNumber * 10 ** (String(halfNumber).length + 1)
             + digit * 10 ** (String(halfNumber).length)
             + reversNum(halfNumber);
-        //пока result меньше или равен number
-        while (result <= number) {
-            //если digit меньше 10
+        if (result <= number) {
             if (digit < 9) {
-                //увеличивам на 1
                 digit = digit + 1;
             } else {
                 digit = 0;
-                //увеличивам halfNumber на 1
                 halfNumber = halfNumber + 1;
             }
             result = halfNumber * 10 ** (String(halfNumber).length + 1)
@@ -176,8 +153,19 @@ function getNextPalindrome(number) {
     return result;
 }
 
-console.log(getNextPalindrome(95549)) // returns 141
+const start = new Date().getTime();
+console.log(getNextPalindrome1(88800)) // returns 11console.log(getNextPalindrome(2)) // returns 141
+console.log(getNextPalindrome1(124536)) // returns 11
+console.log(getNextPalindrome1(99)) //returns 101
+console.log(getNextPalindrome1(888)) // returns 898
+console.log(getNextPalindrome1(91999)) // returns 1001
+const end = new Date().getTime();
+const start1 = new Date().getTime();
+console.log(getNextPalindrome(88800)) // returns 11console.log(getNextPalindrome(2)) // returns 141
 console.log(getNextPalindrome(124536)) // returns 11
 console.log(getNextPalindrome(99)) //returns 101
 console.log(getNextPalindrome(888)) // returns 898
 console.log(getNextPalindrome(91999)) // returns 1001
+const end1 = new Date().getTime();
+console.log(`getNextPalindrome1: ${end - start}ms`);
+console.log(`getNextPalindrome: ${end1 - start1}ms`);
