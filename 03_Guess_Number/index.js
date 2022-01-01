@@ -4,27 +4,108 @@ const maxValueRandom = 200;
 const minNumberOfAttempts = 1;
 const maxNumberOfAttempts = 15;
 
-let valuePCNumber = 0;
-let countAttempts = 0;
-let valueAttempts = 5;
-let minValueUser = 1;
-let maxValueUser = 100;
-let checkWinGame = false;
-
-newGame();
 
 function randomValueMadeNumber(minValue, maxValue) {
-    valuePCNumber = Math.round(Math.random() * (maxValue - minValue) + minValue);
-    return true;
+    // valuePCNumber =;
+    return Math.round(Math.random() * (maxValue - minValue) + minValue);
 }
 
-function newGame() {
-    randomValueMadeNumber(minValueUser, maxValueUser);
-    countAttempts = 0;
-    checkWinGame = false;
-    document.getElementById('inputValue').value = '';
-    document.getElementById('hintNumberData').innerText = String('');
-    document.getElementById('hintText').innerText = String(' ');
+function clearInput(flag = true,isSave=false) {
+    if (isSave)
+    {
+        if (!flag) {
+            document.getElementById('rangeFrom').value = '';
+            document.getElementById('rangeUpDo').value = '';
+            document.getElementById('numberOfAttempts').value = '';
+        }
+        document.getElementById('hintNumberData').innerText = String('');
+    } else {
+        if (flag) {
+            document.getElementById('inputValue').value = '';
+        }
+        if (!flag) {
+            document.getElementById('hintText').innerText = String(' ');
+        }
+    }
+}
+
+let game = newGame({
+    valuePCNumber: randomValueMadeNumber(1, 100),
+    countAttempts: 0,
+    valueAttempts: 5,
+    minValueUser: 1,
+    maxValueUser: 100,
+    checkWinGame: false
+})
+
+function eventHandlerClick() {
+    clearInput(false);
+    const tempGame = game(document.getElementById('inputValue').value);
+    if (typeof tempGame === 'string') {
+        document.getElementById('hintText').innerText = tempGame;
+    } else {
+        game = newGame({
+            valuePCNumber: randomValueMadeNumber(minValueUser, maxValueUser),
+            countAttempts: 0,
+            valueAttempts: 5,
+            minValueUser: 1,
+            maxValueUser: 100,
+            checkWinGame: false
+        })
+    }
+    clearInput();
+}
+
+function eventHandlerSaveClick() {
+    const userValueRangeFrom = Number(document.getElementById('rangeFrom').value);
+    const userValueRangeUpDo = Number(document.getElementById('rangeUpDo').value);
+    const userValueNumberOfAttempts = Number(document.getElementById('numberOfAttempts').value);
+    clearInput(true,true);
+    clearInput(true);
+    clearInput(false);
+    if (saveUserSettings(userValueRangeFrom,userValueRangeUpDo,userValueNumberOfAttempts)){
+        game = newGame({
+            valuePCNumber: randomValueMadeNumber(userValueRangeFrom, userValueRangeUpDo),
+            countAttempts: 0,
+            valueAttempts: userValueNumberOfAttempts,
+            minValueUser: userValueRangeFrom,
+            maxValueUser: userValueRangeUpDo,
+            checkWinGame: false
+        })
+    } else {
+        document.getElementById('hintNumberData').innerText='Неверный формат!';
+    }
+}
+
+function newGame(gameStatus) {
+    return function checkUserNumber(userNumber) {
+        if (gameStatus.countAttempts === gameStatus.valueAttempts && gameStatus.checkWinGame) {
+            return true;
+        } else if (gameStatus.countAttempts === gameStatus.valueAttempts && !gameStatus.checkWinGame) {
+            gameStatus.checkWinGame = true;
+            return 'Попытки закончились!';
+        }
+        userNumber = Number(userNumber);
+        if (!validationRange(userNumber, gameStatus.minValueUser, gameStatus.maxValueUser)) {
+            return 'Неверный формат!';
+        }
+        gameStatus.countAttempts = gameStatus.countAttempts + 1;
+        if (gameStatus.valuePCNumber === userNumber) {
+            gameStatus.countAttempts = gameStatus.valueAttempts;
+            return `Поздравляю! Ты угадал ` +
+                `задуманное число за ${gameStatus.countAttempts} попыток.`;
+        } else if ((userNumber >= (gameStatus.valuePCNumber - gameStatus.valuePCNumber * 0.2)) && (userNumber <= (gameStatus.valuePCNumber + gameStatus.valuePCNumber * 0.20))) {
+            return `Не угадал, но ` +
+                `теплее!!! Осталось ${gameStatus.valueAttempts - gameStatus.countAttempts} попыток.`;
+
+        } else if (gameStatus.countAttempts === 1) {
+            return `Осталось ${gameStatus.valueAttempts - gameStatus.countAttempts} попыток.`;
+        } else {
+            return `Не угадал, ` +
+                `холоднее!!! Осталось ${gameStatus.valueAttempts - gameStatus.countAttempts} попыток.`;
+        }
+
+    }
 }
 
 function validationNumber(value) {
@@ -32,102 +113,24 @@ function validationNumber(value) {
 }
 
 function validationRange(value, minValue, maxValue) {
-    if (validationNumber(value)) {
-        return minValue <= value && value <= maxValue;
-    } else {
-        return false;
-    }
+    return validationNumber(value) && minValue <= value && value <= maxValue;
 
 }
 
-//Сохранение пользовательских настроек
-function saveUserSettings() {
-    //проверка на вхождение пользовательского числа в диапазон по условию
-    let checkValue = true;
-    //Поле для вывода сообщения очищаем
-    document.getElementById('hintNumberData').innerText = '';
-    //пользовательская нижняя граница диапазона
-    const userValueRangeFrom = +document.getElementById('rangeFrom').value;
-    //проверка на вхождение пользовательского числа в диапазон по условию
+
+function saveUserSettings(userValueRangeFrom, userValueRangeUpDo, userValueNumberOfAttempts) {
     if (!validationRange(userValueRangeFrom, minValueRandom, maxValueRandom)) {
-        //если не по условию, записываем в это поле минимальное допустимое значение диапазона
-        document.getElementById('rangeFrom').innerText = String(minValueRandom);
-        checkValue = false;
+        return false;
     }
-    //пользовательская верхняя граница диапазона
-    const userValueRangeUpDo = +document.getElementById('rangeUpDo').value;
     if (!validationRange(userValueRangeUpDo, minValueRandom + 1, maxValueRandom)) {
-        document.getElementById('rangeFrom').innerText = String(maxValueRandom);
-        checkValue = false;
+        return false;
     }
-    //пользовательское количество попыток
-    const userValueNumberOfAttempts = +document.getElementById('numberOfAttempts').value;
     if (!validationRange(userValueNumberOfAttempts, minNumberOfAttempts, maxNumberOfAttempts)) {
-        document.getElementById('numberOfAttempts').innerText = String(minNumberOfAttempts);
-        checkValue = false;
-    }
-    //проверяем все ли числа были в порядке и является ли диапазон - диапазоном
-    if (!checkValue || userValueRangeUpDo < userValueRangeFrom) {
-        //если нет - сообщаем пользователю
-        document.getElementById('hintNumberData').innerText = 'Неверный формат данных!';
-        return false;
-    } else {
-        //задаем значения глобальным переменным
-        valueAttempts = userValueNumberOfAttempts;
-        minValueUser = userValueRangeFrom;
-        maxValueUser = userValueRangeUpDo;
-        document.getElementById('valueRangeFrom').innerText = String(userValueRangeFrom);
-        document.getElementById('valueRangeUpDo').innerText = String(userValueRangeUpDo);
-        document.getElementById('valueNumberOfAttempts').innerText = String(userValueNumberOfAttempts);
-        newGame();
-    }
-}
-
-//проверяем что ввел пользователь
-function checkUserNumber() {
-    //если все попытки использованы и игрок победил (или уже узнал, что проиграл)
-    //, начинаем новую игру
-    if (countAttempts === valueAttempts && checkWinGame) {
-        newGame();
-        return true;
-    } else if (countAttempts === valueAttempts && !checkWinGame) {
-        //если все попытки использованы и игрок проиграл - сообщаем ему об этом
-        document.getElementById('hintText').innerText = 'Попытки закончились!';
-        checkWinGame = true;
-        return true;
-    }
-
-    //число, которое ввел пользователь
-    const userNumber = +document.getElementById('inputValue').value;
-
-    //проверяем входит ли оно в диапазон
-    if (!validationRange(userNumber, minValueUser, maxValueUser)) {
-        document.getElementById('inputValue').value = '';
-        document.getElementById('hintText').innerText = 'Неверный формат!';
         return false;
     }
-
-    //увличиваем счетчик попыток
-    countAttempts = countAttempts + 1;
-
-    //пользователь угадал
-    if (valuePCNumber === userNumber) {
-        document.getElementById('hintText').innerText = `Поздравляю! Ты угадал ` +
-            `задуманное число за ${countAttempts} попыток.`;
-        //в пользовательское количество попыток приравниваем максимальное
-        countAttempts = valueAttempts;
-        return true;
-        //если пользовательское число меньше или больше загаданного на 20%
-    } else if ((userNumber >= (valuePCNumber - valuePCNumber * 0.2)) && (userNumber <= (valuePCNumber + valuePCNumber * 0.20))) {
-        document.getElementById('hintText').innerText = `Не угадал, но ` +
-            `теплее!!! Осталось ${valueAttempts - countAttempts} попыток.`;
-    //если попытка первая
-    } else if (countAttempts === 1) {
-        document.getElementById('hintText').innerText = `Осталось ${valueAttempts - countAttempts} попыток.`;
-    //если не угадал совсем
+    if (userValueRangeUpDo < userValueRangeFrom) {
+        return false;
     } else {
-        document.getElementById('hintText').innerText = `Не угадал, ` +
-            `холоднее!!! Осталось ${valueAttempts - countAttempts} попыток.`;
+        return true;
     }
-
 }
