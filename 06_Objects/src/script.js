@@ -1,15 +1,7 @@
 function getCookingTime(eggsAmount) {
-    if (eggsAmount !== 0) {
-        let result = eggsAmount % 5;
-        if (result !== 0) {
-            result = eggsAmount + 5 - result;
-        } else {
-            result = eggsAmount;
-        }
-        return result;
-    } else {
-        return 0;
-    }
+    if (typeof eggsAmount !== 'number')
+        return false;
+    return Math.ceil(eggsAmount / 5)*5;
 }
 
 // console.log(getCookingTime(11))
@@ -153,19 +145,17 @@ function getNextPalindrome(number) {
     return result;
 }
 
-const start = new Date().getTime();
-console.log(getNextPalindrome1(88800)) // returns 11console.log(getNextPalindrome(2)) // returns 141
-console.log(getNextPalindrome1(124536)) // returns 11
-console.log(getNextPalindrome1(99)) //returns 101
-console.log(getNextPalindrome1(888)) // returns 898
-console.log(getNextPalindrome1(91999)) // returns 1001
-const end = new Date().getTime();
-const start1 = new Date().getTime();
-console.log(getNextPalindrome(88800)) // returns 11console.log(getNextPalindrome(2)) // returns 141
-console.log(getNextPalindrome(124536)) // returns 11
-console.log(getNextPalindrome(99)) //returns 101
-console.log(getNextPalindrome(888)) // returns 898
-console.log(getNextPalindrome(91999)) // returns 1001
-const end1 = new Date().getTime();
-console.log(`getNextPalindrome1: ${end - start}ms`);
-console.log(`getNextPalindrome: ${end1 - start1}ms`);
+console.time('getNextPalindrome1')
+getNextPalindrome1(88800);
+getNextPalindrome1(124536);
+getNextPalindrome1(99);
+getNextPalindrome1(888);
+getNextPalindrome1(91999);
+console.timeEnd('getNextPalindrome1')
+console.time('getNextPalindrome')
+getNextPalindrome(88800);
+getNextPalindrome(124536);
+getNextPalindrome(99);
+getNextPalindrome(888);
+getNextPalindrome(91999);
+console.timeEnd('getNextPalindrome')
