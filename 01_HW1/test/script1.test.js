@@ -41,6 +41,9 @@ describe("script1", function () {
         it("(-1,-3) - 3)", function () {
             assert.equal(script1.fCoard(-1, -3), 3);
         });
+        it("(0,0)-0)", function () {
+            assert.equal(script1.fCoard(0,0), 0);
+        });
 
         it("а - строка, значит false", function () {
             assert.equal(script1.fCoard('1', 3), false);

@@ -13,7 +13,9 @@ module.exports = {
     fArrayMaxIndex,
     fEvalSum,
     fRevers,
-    fnEvalArray
+    fnEvalArray,
+    validateArrayNumber,
+    validateArrayInteger
 };
 
 //1.	Найти минимальный элемент массива
@@ -149,15 +151,15 @@ function fSwap(arr) {
     let temp;
     let j = arr.length / 2;
     if (arr.length % 2 !== 0)
-        j -= 0.5;
+        j += 0.5;
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length && j < arr.length; i++) {
         if (i < (arr.length / 2)) {
             temp = arr[j];
             arr[j] = arr[i];
             arr[i] = temp;
             j++;
-        } else break;
+        }
     }
     return arr;
 }
@@ -346,7 +348,8 @@ function MergeSort(array, lowIndex, highIndex) {
     if (lowIndex < highIndex) {
         let middleIndex = (lowIndex + highIndex) / 2;
         if (middleIndex % 1 !== 0) {
-            middleIndex -= 0.5;}
+            middleIndex -= 0.5;
+        }
         if (middleIndex < 1) {
             middleIndex = 0;
         }
