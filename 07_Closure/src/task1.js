@@ -3,7 +3,7 @@ function tickets(person) {
         const YES = 'YES';
         const NO = 'NO';
         const money = person.reduce((acc, item) => {
-            if (acc >= item - 25) {
+            if (typeof acc !== 'boolean' && acc >= item - 25) {
                 return acc + 25;
             } else {
                 return false;
