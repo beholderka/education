@@ -1,13 +1,11 @@
-const {saveUserSettings, checkUserNumber,validationNumber,validationRange,newGame,eventHandlerClick,eventHandlerSaveClick} = require('../js/index')
+const {saveUserSettings, checkUserNumber, validationNumber, validationRange, newGame, eventHandlerClick, eventHandlerSaveClick} = require('../js/index')
+
 jest.mock('../js/utils', () => {
     const originalModule = jest.requireActual('../js/utils');
 
-    //Mock the default export and named export 'foo'
     return {
         __esModule: true,
         ...originalModule,
-        // alertCall: jest.fn(),
-        // attemptsPlus: jest.fn(),
         setNodeInnerText: jest.fn(() => true),
         setNodeValue: jest.fn(() => true),
         getNodeValue: jest
@@ -146,11 +144,11 @@ describe('tests for validationNumber function', function () {
 describe('tests for validationRange function', function () {
 
     test('true', function () {
-        expect(validationRange(1,1,3)).toBe(true);
+        expect(validationRange(1, 1, 3)).toBe(true);
     })
 
     test('false', function () {
-        expect(validationRange(1,3,4)).toBe(false);
+        expect(validationRange(1, 3, 4)).toBe(false);
     })
 
 })
