@@ -32,12 +32,6 @@ const paths = {
         img: `${SRC}/img/**/*`,
         html: `${SRC}/html/*.html`,
     },
-    reloadWatch: {
-        css: `${DIST}/**/*.css`,
-        js: `${DIST}/**/*.js`,
-        img: `${DIST}/img/**/*`,
-        html: `${DIST}/*.html`,
-    },
 };
 
 const verify = () => {
