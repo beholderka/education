@@ -1,9 +1,9 @@
 @font-face {
     font-family: Pompadur; /* Гарнитура шрифта */
-    src: url(font/Laptev_Brush.otf); /* Путь к файлу со шрифтом */
+    src: url(../font/Laptev_Brush.otf); /* Путь к файлу со шрифтом */
 }
 * {
-    margin: 0px;
+    margin: 0;
     font-family:Pompadur;
     font-size: 20px;
 }
@@ -17,7 +17,7 @@ p {
     margin: 80px auto;
     padding: 20px;
     background: linear-gradient(325deg,#fbc6d0 50%,#c2d1e5 50%);
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
 }
 .condition, .inputData {
     text-align: center;
@@ -36,8 +36,8 @@ input[type="button"] {
     font-family:Pompadur;
     background-color: #c2d1e5;
     background-clip: padding-box;
-    border:0px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
+    border:0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 input[type="button"]:hover {
