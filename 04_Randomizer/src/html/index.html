@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Randomizer</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
  <div class="content">
@@ -14,10 +14,10 @@
      <label class="label-text-content" for="value-max">MAX value:</label>
      <input class="input-text-content" id="value-max" type="number" placeholder="Input max:">
      <p class="label-text-content"></p>
-     <input class="input-button-content button-generate"   type="button" value="Generate" onclick="validateRangeValue()">
-     <p class="label-text-content-result">Generate number: <label class="label-text-content-result value-result"> </label></p>
-     <input class="input-button-content" type="button" value="Reset" onclick="resetRandom()">
+     <input class="input-button-content" id="button_generate"   type="button" value="Generate">
+     <p class="label-text-content-result">Generate number: <label class="label-text-content-result" id="value_result"> </label></p>
+     <input class="input-button-content" type="button" id="reset" value="Reset">
  </div>
-<script src="../js/script.js"></script>
+<script src="./js/index.js"></script>
 </body>
 </html>

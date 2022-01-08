@@ -9,6 +9,9 @@
     "build": "gulp build",
     "test": "jest"
   },
+  "jest":{
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
     "@babel/core": "7.16.7",
     "@babel/preset-env": "7.16.7",
