@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Угадай число</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 <body>
 <menu class="container">
@@ -21,7 +22,7 @@
                max="15">
         <p class="container__text" id="hintNumberData"></p>
         <input class="container__input container__input--button" type="button" value="Сохранить"
-               onclick="saveUserSettings()">
+               id="save">
     </section>
     <section class="container__solution">
         <p class="container__text">Привет, я загадал число от <label class="container__text"
@@ -29,11 +30,11 @@
                 class="container__text" id="valueRangeUpDo">100</label> вашего диапазона.
             Попробуй угадать его за <label class="container__text" id="valueNumberOfAttempts">5</label> попыток!</p>
         <input class="container__input" type="text" id="inputValue">
-        <input class="container__input container__input--button" type="button" value="Ок" onclick="checkUserNumber()">
+        <input class="container__input container__input--button" type="button" value="Ок" id="play">
         <p class="container__text" id="hintText"></p>
-        <input class="container__input container__input--button" type="button" value="Выход" onclick="newGame()">
+        <input class="container__input container__input--button" type="button" value="Выход"  id="end_game">
     </section>
 </menu>
-<script src="index.js"></script>
+<script src="./js/index.js" ></script>
 </body>
 </html>
