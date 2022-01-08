@@ -41,9 +41,11 @@ body {
     }
 
     &--button {
+      z-index: 2;
       font-size: 25px;
       border: 1px solid #1E0033;
       width: 150px;
+      position: relative;
     }
 
   }
@@ -73,3 +75,62 @@ body {
 
 }
 
+@for $i from 1 through 36 {
+  .spark-#{$i} {
+    position: absolute;
+    transform: rotate(#{$i*10}deg);
+    left:   50%;
+    z-index: 1;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 0.1rem;
+      height: 2rem;
+      border-radius: 0.1rem;
+      opacity: 0;
+      background-color: white;
+      transform-origin: bottom center;
+      animation: sparkler-sparkle 0.5s infinite linear;
+      animation-delay: (random(1000) + 1)+ms;
+    }
+  }
+}
+
+@keyframes sparkler-light-anim {
+  0%   {
+    bottom: 11.5rem
+  }
+  100% {
+    bottom: 1.5rem;
+  }
+}
+
+@keyframes sparkler-sparkle {
+  0%   {
+    transform: translateY(-0.5rem) scaleY(0.25);
+    opacity: 0;
+  }
+  10%   {
+    transform: translateY(-1rem) scaleY(0.5);
+    opacity: 0.35;
+  }
+  30%   {
+    transform: translateY(-2rem) scaleY(0.5);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-4rem) scaleY(1.5);
+    opacity: 0.7;
+  }
+  51% {
+    opacity: 0;
+    transform: translateY(-4rem) scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0) scaleY(0.25);
+  }
+}

@@ -21,13 +21,13 @@ const paths = {
         html: `${DIST}/`
     },
     src: {
-        scss: `${SRC}/scss/**/*.scss`,
+        scss: `${SRC}/style/**/*.scss`,
         js: `${SRC}/js/*.js`,
         img: `${SRC}/img/**/*`,
         public: `${SRC}/**/*`
     },
     compileWatch: {
-        scss: `${SRC}/scss/**/*.scss`,
+        scss: `${SRC}/style/**/*.scss`,
         js: `${SRC}/js/**/*.js`,
         img: `${SRC}/img/**/*`,
         html: `${SRC}/html/*.html`,

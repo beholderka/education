@@ -65,7 +65,8 @@ function validationRange(value, minValue, maxValue) {
 
 document.addEventListener('DOMContentLoaded', function () {
     newGame();
-
+    addListener('end_game', 'mouseover', addSpark.bind(null,'sparkler'));
+    addListener('end_game', 'mouseout', deleteSpark.bind(null,'sparkler'));
 })
 
 function newGame() {
