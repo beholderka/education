@@ -1,12 +1,11 @@
 function cache(func) {
     let memo = {};
-    let slice = Array.prototype.slice;
 
     return function() {
-        let args = slice.call(arguments);
+        let args = [...arguments];
 
         if (args in memo)
-            return memo[args];
+            return 'cache: '+ memo[args];
         else
             return (memo[args] = func.apply(this, args));
 
