@@ -4,24 +4,29 @@
 недоступна. Не используйте BigInt.
 */
 
+function sumValue(firstValue, secondValue) {
+    let result = [];
+    let carryFlag = 0;
+
+    firstValue.forEach((item, index) => {
+        const firstArgument = Number(item);
+        const secondArgument = Number.isNaN(Number(secondValue[index])) ? 0 : Number(secondValue[index]);
+        const sumArguments = firstArgument + secondArgument + carryFlag;
+
+        result.push(String(sumArguments % 10));
+        carryFlag = String(sumArguments).length === 2 ? 1 : 0;
+    }, 0)
+
+    if (carryFlag===1){
+        result.push(carryFlag);
+    }
+    return result.reverse().join('');
+}
+
 function getSum(valueA, valueB) {
     if (typeof valueA === 'string' && typeof valueB === 'string') {
         valueA = valueA.split('').reverse();
         valueB = valueB.split('').reverse();
-
-        function sumValue(firstValue, secondValue) {
-            let result = [];
-            let carryFlag = 0;
-
-            firstValue.forEach((item, index) => {
-                const secondArgument = Number.isNaN(Number(secondValue[index])) ? 0 : Number(secondValue[index]);
-                const sumArguments = Number(item) + secondArgument + carryFlag;
-
-                result.push(String(sumArguments % 10));
-                carryFlag = (sumArguments - sumArguments % 10) / 10;
-            }, 0)
-            return result.reverse().join('');
-        }
 
         if (valueA.length > valueB.length) {
             return sumValue(valueA, valueB);
