@@ -11,12 +11,14 @@ function getSum(valueA, valueB) {
 
         function sumValue(firstValue, secondValue) {
             let result = [];
-            let acc = 0;
+            let carryFlag = 0;
+
             firstValue.forEach((item, index) => {
                 const secondArgument = Number.isNaN(Number(secondValue[index])) ? 0 : Number(secondValue[index]);
-                const sumArguments = Number(item) + secondArgument + acc;
+                const sumArguments = Number(item) + secondArgument + carryFlag;
+
                 result.push(String(sumArguments % 10));
-                acc = (sumArguments - sumArguments % 10) / 10;
+                carryFlag = (sumArguments - sumArguments % 10) / 10;
             }, 0)
             return result.reverse().join('');
         }
