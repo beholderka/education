@@ -16,6 +16,6 @@ export interface IList {
     halfReverse: () => void
     retainAll: (items: number[]) => void
     removeAll: (items: number[]) => void
-    sort: () => void
-    print: () => number[]
+    sort: () => number[]
+    print: () => void;
 }
