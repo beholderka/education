@@ -64,7 +64,7 @@ export class AList implements IList {
     }
 
     maxIndex(): number {
-        if (this.size === 0) return 0;
+        if (this.size === 0) return -1;
         let max = this.array[0];
         let index = 0;
         for (let i = 0; i < this.size; i++) {
@@ -77,7 +77,7 @@ export class AList implements IList {
     }
 
     maxValue(): number {
-        if (this.size === 0) return 0;
+        if (this.size === 0) return undefined;
         let max = this.array[0];
         for (let i = 0; i < this.size; i++) {
             if (max < this.array[i]) {
@@ -88,7 +88,7 @@ export class AList implements IList {
     }
 
     minIndex(): number {
-        if (this.size === 0) return 0;
+        if (this.size === 0) return -1;
         let min = this.array[0];
         let index = 0;
         for (let i = 0; i < this.size; i++) {
@@ -101,7 +101,7 @@ export class AList implements IList {
     }
 
     minValue(): number {
-        if (this.size === 0) return 0;
+        if (this.size === 0) return undefined;
         let min = this.array[0];
         for (let i = 0; i < this.size; i++) {
             if (min > this.array[i]) {
@@ -111,8 +111,10 @@ export class AList implements IList {
         return min;
     }
 
-    print(): number[] {
-        return this.array
+    print(): void {
+       for (let i=0;i<this.size;i++) {
+           console.log(this.array[i])
+       }
     }
 
     remove(value: number) {
@@ -157,11 +159,32 @@ export class AList implements IList {
     }
 
     set(value: number, index: number): void {
-        if (index < 0 || index > this.size) return;
+        if (index < 0 || index > this.size) return undefined;
         this.array[index] = value;
     }
+    private static partition(array, minIndex, maxIndex) {
+        let pivot = minIndex - 1;
+        for (let i = minIndex; i < maxIndex; i++) {
+            if (array[i] < array[maxIndex]) {
+                pivot++;
+                [array[pivot], array[i]] = [array[i], array[pivot]];
+            }
+        }
+        pivot++;
+        [array[pivot], array[maxIndex]] = [array[maxIndex], array[pivot]];
+        return pivot;
+    }
 
-    sort(): void {
+    sort(array:number[]=this.array,minIndex:number=0,maxIndex:number=this.size-1): number[] {
+        if (minIndex >= maxIndex) {
+            return array;
+        }
+
+        let pivotIndex = AList.partition(array, minIndex, maxIndex);
+        this.sort(array, minIndex, pivotIndex - 1);
+        this.sort(array, pivotIndex + 1, maxIndex);
+
+        return array;
     }
 
     toArray(): number[] {
