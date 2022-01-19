@@ -4,16 +4,73 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="style.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+    </style>
 </head>
 <body>
 <div class="calc">
     <div class="calc__screen">
-        <p>0</p>
+        <span class="expression"></span>
+        <div class="calc__text">0</div>
     </div>
     <div class="calc__buttons">
+        <button class="button" value="(">(</button>
+        <button class="button" value=")">)</button>
+        <button class="button" value="mc">mc</button>
+        <button class="button" value="m+">m+</button>
+        <button class="button" value="m-">m-</button>
+        <button class="button" value="mr">mr</button>
+        <button class="button" value="AC">AC</button>
+        <button class="button" value="+/-">+/-</button>
+        <button class="button" value="%">%</button>
+        <button class="button" value="/">&#247</button>
 
+        <button class="button" value="2nd">2<sup>nd</sup></button>
+        <button class="button" value="x2">x&#178</button>
+        <button class="button" value="x3">x&#179</button>
+        <button class="button" value="xy">x<sup>y</sup></button>
+        <button class="button" value="ex">e<sup>x</sup></button>
+        <button class="button" value="10x">10<sup>x</sup></button>
+        <button class="button" value="7">7</button>
+        <button class="button" value="8">8</button>
+        <button class="button" value="9">9</button>
+        <button class="button" value="x">&#215</button>
+
+        <button class="button" value="1/x">&#185/x</button>
+        <button class="button" value="√">√x</button>
+        <button class="button" value="3√">∛x</button>
+        <button class="button" value="x√y"><sup>x</sup>√y</button>
+        <button class="button" value="ln">ln</button>
+        <button class="button" value="log">log</button>
+        <button class="button" value="4">4</button>
+        <button class="button" value="5">5</button>
+        <button class="button" value="6">6</button>
+        <button class="button" value="-">-</button>
+
+        <button class="button" value="x!">x!</button>
+        <button class="button" value="sin">sin</button>
+        <button class="button" value="cos">cos</button>
+        <button class="button" value="tan">tan</button>
+        <button class="button" value="e">e</button>
+        <button class="button" value="EE">EE</button>
+        <button class="button" value="1">1</button>
+        <button class="button" value="2">2</button>
+        <button class="button" value="3">3</button>
+        <button class="button" value="+">+</button>
+
+        <button class="button" value="rad">rad</button>
+        <button class="button" value="sinh">sinh</button>
+        <button class="button" value="cosh">cosh</button>
+        <button class="button" value="tanh">tanh</button>
+        <button class="button" value="П">&#8719</button>
+        <button class="button" value="Rand">Rand</button>
+        <button class="button" value="0">0</button>
+        <button class="button" value=".">,</button>
+        <button class="button" value="=">=</button>
     </div>
 </div>
+<script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
 <script src="index.js"></script>
 </body>
 </html>
