@@ -2,8 +2,8 @@ import {ITree} from './interface'
 import {Node} from './NodeTree'
 
 export class BST implements ITree {
-    private root: Node;
-    private sizeTree: number;
+    public root: Node;
+    protected sizeTree: number;
 
     constructor() {
         this.root = null;
