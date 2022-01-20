@@ -10,7 +10,7 @@ export class AList implements IList {
         this.array.length = value;
     }
 
-    private array: number[];
+    private readonly array: number[];
     private sizeArray: number;
 
     constructor()
