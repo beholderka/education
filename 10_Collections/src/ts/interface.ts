@@ -1,3 +1,4 @@
+import {Node} from './NodeTree'
 export interface IList {
     clear: () => void
     add: (value: number) => void
@@ -18,4 +19,22 @@ export interface IList {
     removeAll: (items: number[]) => void
     sort: () => number[]
     print: () => void;
+}
+
+export interface ITree {
+    init:(array:number[]) => void;
+    clear:()=>void;
+    size:()=>number;
+    insert:(value:number)=>void;
+    print:()=>void;
+    toArray:()=>number[];
+    search:(value:number)=>Node;
+    width:()=>number;
+    height:()=>number;
+    nodes:()=>number;
+    leaves:()=>number;
+    revers:()=>Node;
+    minNode:()=>Node;
+    maxNode:()=>Node;
+    remove:(value:number)=>void;
 }
