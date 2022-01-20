@@ -11,17 +11,9 @@ class Node {
 }
 
 export class LList implements IList {
-    get size(): number {
-        return this.sizeArray;
-    }
-
-    set size(value: number) {
-        this.sizeArray = value;
-    }
-
     private head: Node;
     private tail: Node;
-    private sizeArray: number;
+    private size: number;
 
     constructor()
     constructor(value?: any) {
@@ -47,7 +39,7 @@ export class LList implements IList {
     }
 
     add(value: number): void {
-        let node = new Node(value);
+        const node = new Node(value);
         this.size++;
         if (this.isEmpty()) {
             this.head = node;
@@ -96,7 +88,7 @@ export class LList implements IList {
     halfReverse(): void {
         let j = Math.trunc(this.size / 2) - 1;
         for (let i = 0; i < Math.trunc(this.size / 4); i++) {
-            let temp = this.get(i);
+            const temp = this.get(i);
             this.set(this.get(j), i);
             this.set(temp, j);
             j--;
@@ -179,7 +171,7 @@ export class LList implements IList {
     }
 
     private  removeHead() {
-        let node = this.head;
+        const node = this.head;
         this.head = node.next;
         this.size--;
     }
@@ -259,13 +251,13 @@ export class LList implements IList {
         for (let i = minIndex; i < maxIndex; i++) {
             if (list.get(i) < list.get(maxIndex)) {
                 pivot++;
-                let temp = list.get(pivot);
+                const temp = list.get(pivot);
                 list.set(list.get(i), pivot);
                 list.set(temp, i);
             }
         }
         pivot++;
-        let temp = list.get(pivot);
+        const temp = list.get(pivot);
         list.set(list.get(maxIndex), pivot);
         list.set(temp, maxIndex);
         return pivot;
@@ -276,7 +268,7 @@ export class LList implements IList {
             return list.toArray();
         }
 
-        let pivotIndex = LList.partition(list, minIndex, maxIndex);
+        const pivotIndex = LList.partition(list, minIndex, maxIndex);
         this.sort(list, minIndex, pivotIndex - 1);
         this.sort(list, pivotIndex + 1, maxIndex);
 
@@ -286,7 +278,7 @@ export class LList implements IList {
     toArray(): number[] {
         if (this.isEmpty()) return [];
         let node = this.head;
-        let arrayResult = []
+        const arrayResult = []
         while (node) {
             arrayResult[arrayResult.length] = node.value;
             node = node.next;
