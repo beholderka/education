@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+<main class="wrapper">
+    <canvas class="wrapper__canvas" id="canvas" width="1200" height="600"></canvas>
+    <div class="wrapper__panel panel">
+        <label class="label" for="color">Choose color:<strong id="colorValue">#000000</strong> </label>
+        <input type="color" id="color" value="#000000">
+        <label class="label" for="rangeWidth">Choose width:<strong id="rangeValue">1</strong> </label>
+        <input class="panel__width" type="range" max="50" value="1" min="1" id="rangeWidth">
+        <button class="panel__button" id="save" type="button">Save</button>
+    </div>
+</main>
+<script src="./js/index.js"></script>
+</body>
+</html>
