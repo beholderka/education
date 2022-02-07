@@ -1,0 +1,12 @@
+{
+  "name": "12_DB",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^15.0.0"
+  },
+  "dependencies": {
+    "mysql": "2.18.1"
+  }
+}
