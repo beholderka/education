@@ -21,9 +21,9 @@ function drawIfPressed(mouse, e) {
     const y = e.offsetY;
     const dx = mouse.prevX;
     const dy = mouse.prevY;
-    mouse.prevX = x;
-    mouse.prevY = y;
-    if (e.buttons > 0) {
+    if (e.buttons === 1) {
+        mouse.prevX = x;
+        mouse.prevY = y;
         this.draw(x, y, dx, dy);
     }
 }
@@ -34,5 +34,5 @@ function setValue(id, idNodeValue, cb) {
 }
 
 //removeIf(production)
-module.exports = {setValue,drawIfPressed,onWindowLoad}
+module.exports = {setValue, drawIfPressed, onWindowLoad}
 //endRemoveIf(production)

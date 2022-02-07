@@ -1,0 +1,35 @@
+body {
+  background-color: #7f7f7f;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px auto;
+
+  &__canvas {
+    background-color: white;
+    box-shadow:0 0 2px 0 #000000;
+    cursor: crosshair;
+
+  }
+
+  &__panel {
+
+  }
+}
+.label {
+  display: block;
+  margin: 5px 0;
+}
+
+.panel {
+  &__button {
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+  }
+  &__width {
+    height: 20px;
+  }
+}
