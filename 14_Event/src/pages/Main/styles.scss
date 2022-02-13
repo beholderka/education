@@ -1,0 +1,49 @@
+.wrapper {
+  &__image {
+    height: 240px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+
+  &__show-image {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+
+.image {
+  height: 700px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__main {
+    height: 480px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
+
+  &__small {
+    transition: 1s;
+  }
+
+  &__small:hover {
+    transform: scale(1.2);
+  }
+}
+
+.button {
+}
+
+body {
+  background-color: #b0afaf;
+  overflow-y: hidden;
+
+}
