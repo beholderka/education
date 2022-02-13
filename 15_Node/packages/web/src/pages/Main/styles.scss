@@ -1,0 +1,41 @@
+.upload-container {
+  display: flex;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+  margin: 100px auto;
+}
+
+.upload-container input {
+  border: 1px solid #92b0b3;
+  background: #f1f1f1;
+  outline: 2px dashed #92b0b3;
+  outline-offset: -10px;
+  padding: 200px 0 150px 250px;
+  text-align: center;
+  width: 500px;
+}
+
+.upload-container input:hover {
+  background: #ddd;
+}
+
+.upload-container:before {
+  position: absolute;
+  bottom: 50px;
+  content: " (or) Drag and Drop files here. ";
+  color: #3f8188;
+  font-weight: 900;
+}
+
+.response {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+a {
+  color: #3f8188;
+}
+a:hover {
+  color: #92b0b3;
+}
