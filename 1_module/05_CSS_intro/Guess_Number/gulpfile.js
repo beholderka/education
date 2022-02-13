@@ -85,7 +85,7 @@ gulp.task('fileInclude', (cb) => {
 });
 
 gulp.task('scss', function (cb) {
-    gulp.src('./src/style/**/*.scss')
+    gulp.src('./src/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
     cb();
