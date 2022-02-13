@@ -1,57 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <title>Get Visa</title>
-</head>
+  <meta charset='UTF-8'>
+  <title>Get Visa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></head>
 <body>
-<section class="generate">
-    <section class="generate__block">
-        <label for="name" class="generate__text">
-            Name
-        </label>
-        <input class="generate__input-text" id="name" type="text" placeholder="Enter student name...">
-        <button type="button" id="generateName">Generate</button>
+<main class='wrapper'>
+  <section class='generate'>
+    <h1 class='generate__header'>Get visa</h1>
+    <section class='generate__block'>
+      <label for='name' class='generate__text'>
+        Name
+      </label>
+      <input class='generate__input-text' id='name' type='text' placeholder='Enter student name...'>
+      <button class='generate__button' type='button' id='generateName'>Generate</button>
     </section>
-    <section class="generate__block">
+    <section class='generate__block'>
 
-        <label for="balance" class="generate__text">
-            Balance
-        </label>
-        <input class="generate__input-text" id="balance" type="text" placeholder="Enter balance...">
-        <button type="button" id="generateBalance">Generate</button>
+      <label for='balance' class='generate__text'>
+        Balance
+      </label>
+      <input class='generate__input-text' id='balance' type='text' placeholder='Enter balance...'>
+      <button class='generate__button' type='button' id='generateBalance'>Generate</button>
     </section>
-    <section class="generate__block">
+    <section class='generate__block'>
 
-        <label for="age" class="generate__text">
-            Age </label>
-        <input class="generate__input-text" id="age" type="text" placeholder="Enter student age...">
-        <button type="button" id="generateAge">Generate</button>
+      <label for='age' class='generate__text'>
+        Age </label>
+      <input class='generate__input-text' id='age' type='text' placeholder='Enter student age...'>
+      <button class='generate__button' type='button' id='generateAge'>Generate</button>
     </section>
-    <section class="generate__block">
+    <section class='generate__block'>
 
-        <label for="document" class="generate__text">
-            Document
-        </label>
-        <input class="generate__input-text" id="document" type="text" placeholder="Enter documents...">
-        <button type="button" id="generateDocument">Generate</button>
+      <label for='document' class='generate__text'>
+        Document
+      </label>
+      <input class='generate__input-text' id='document' type='text'
+             placeholder='Enter documents...'>
+      <button class='generate__button' type='button' id='generateDocument'>Generate</button>
     </section>
-    <section class="generate__block">
+    <section class='generate__block'>
 
-        <label for="englishLevel" class="generate__text">
-            English level
-        </label>
-        <input class="generate__input-text" id="englishLevel" type="text" placeholder="Enter student english level...">
-        <button type="button" id="generateEnglishLevel">Generate</button>
+      <label for='englishLevel' class='generate__text'>
+        English level
+      </label>
+      <input class='generate__input-text' id='englishLevel' type='text'
+             placeholder='Enter student english level...'>
+      <button class='generate__button' type='button' id='generateEnglishLevel'>Generate</button>
     </section>
-</section>
-<section class="button">
-    <button type="button" id="generateAll">Generate All</button>
-    <button type="button" id="add">Add candidate</button>
-    <button type="button" id="init">Init</button>
-    <button type="button" id="race">Race</button>
-    <button type="button" id="clear">Clear</button>
-</section>
-<canvas id="canvas" width="900px" height="500px" ></canvas>
+
+    <section class='button'>
+      <button class='button__items' type='button' id='generateAll'>Generate All</button>
+      <button class='button__items' type='button' id='add'>Add candidate</button>
+      <button class='button__items' type='button' id='init' disabled>Init</button>
+      <button class='button__items' type='button' id='race' disabled>Race</button>
+      <button class='button__items' type='button' id='clear'>Clear</button>
+    </section>
+  </section>
+  <canvas class='canvas' id='canvas' width='600px' height='400px'></canvas>
+</main>
 </body>
 </html>

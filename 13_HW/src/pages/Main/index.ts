@@ -1,7 +1,16 @@
 import './styles.scss';
-import { resolve } from 'eslint-import-resolver-typescript';
+import {
+  setNodeDisabled,
+  getNode,
+  getNodeValue,
+  setNodeValue,
+  randomNumber,
+  randomArrayElement,
+  addListener,
+  promiseTemplate
+} from './utils';
 
-function initApp() {
+export function initApp() {
   const names = ['Shirley Thompson', 'Edith Cole', 'Clayton Poole', 'Larry Sanders', 'Randall Brown', 'Minnie Diaz', 'Donald Palmer', 'David Hamilton', 'Martha Bishop', 'Melissa Henry'];
   const balance = [1400, 2500, 1840, 2000, 3000, 1000, 2300, 600, 2100, 4000];
   const age = [33, 13, 46, 92, 45, 17, 55, 28, 30, 36];
@@ -18,9 +27,19 @@ function initApp() {
   addListener('add', 'click', addCandidate.bind(null, candidate, maxCountCandidate));
   addListener('init', 'click', initDraw.bind(null, candidate));
   addListener('race', 'click', startRace.bind(null, candidate));
+  addListener('clear', 'click', clearAll.bind(null, candidate));
 }
 
-function generateAll(names, balance, age, englishLevel, documents) {
+export function clearAll(candidate) {
+  candidate.length = 0;
+  const canvas =  <HTMLCanvasElement>getNode('canvas');
+  const context = canvas.getContext('2d');
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  setNodeDisabled('add', false);
+
+}
+
+export function generateAll(names, balance, age, englishLevel, documents) {
   setNodeValue('name', randomArrayElement.bind(null, names, 0, 9));
   setNodeValue('balance', randomArrayElement.bind(null, balance, 0, 9));
   setNodeValue('age', randomArrayElement.bind(null, age, 0, 9));
@@ -28,7 +47,7 @@ function generateAll(names, balance, age, englishLevel, documents) {
   setNodeValue('document', randomArrayElement.bind(null, documents, 0, 4));
 }
 
-function addCandidate(candidate, maxCountCandidate) {
+export function addCandidate(candidate, maxCountCandidate) {
   if (candidate.length < maxCountCandidate) {
     const name = getNodeValue('name');
     const englishLevel = getNodeValue('englishLevel');
@@ -42,70 +61,64 @@ function addCandidate(candidate, maxCountCandidate) {
       'balance': balance,
       'age': age,
       'number': candidate.length + 1,
+      drawAge(time, red, green) {
+        drawInTime(time, this.age, 3, this.number, red, green);
+      },
+      drawBalance(time, red, green) {
+        drawInTime(time, this.balance, 2, this.number, red, green);
+      },
+      drawEnglishLevel(time, red, green) {
+        drawInTime(time, this.englishLevel, 5, this.number, red, green);
+      },
+      drawDocuments(time, red, green) {
+        drawInTime(time, this.documents, 4, this.number, red, green);
+      },
     });
+    setNodeDisabled('init', false);
+  } else {
+    setNodeDisabled('add');
   }
 }
 
-function promiseTemplate(candidate, property, timeout, callback) {
-  return new Promise<boolean>((resolve, reject) => {
-    setTimeout(() => {
-      if (callback(candidate[property])) {
-        resolve(true);
-      } else {
-        reject(false);
-      }
-    }, timeout);
-  });
-}
 
-function startRace(candidate) {
-  const persons = [];
+export function startRace(candidate) {
+  const candidatePromise = [];
+  setNodeDisabled('race');
   candidate.forEach((person) => {
-      console.log(person.name);
       let time = randomNumber(5, 10) * 1000;
-      drawInTime(time, person.balance, 2, person.number, 0, 255);
+      person.drawBalance(time, 0, 255);
       promiseTemplate(person, 'balance', time, (balance) => balance >= 2000)
         .then(() => {
-          time = randomNumber(1,3) * 1000;
-          drawInTime(time, person.age, 3, person.number, 0, 255);
+          time = randomNumber(1, 3) * 1000;
+          person.drawAge(time, 0, 255);
           const promiseAge = promiseTemplate(person, 'age', time, (age) => (age >= 18 && age <= 60))
-            .then(() => {
-              return Promise.resolve(true);
-            }).catch(() => {
-              drawCircle(person.age, 3, person.number, 0, 255);
-              return Promise.reject();
+            .then(() => Promise.resolve())
+            .catch(() => {
+              drawCircle(person.age, 3, person.number, 255, 0);
             });
-          time = randomNumber(10,20) * 1000;
-          drawInTime(time, person.documents, 4, person.number, 0, 255);
+          time = randomNumber(10, 20) * 1000;
+          person.drawDocuments(time, 0, 255);
           const promiseDocuments = promiseTemplate(person, 'documents', time, (documents) => documents)
-            .then(() => {
-              return Promise.resolve(true);
-            }).catch(() => {
-              drawCircle(person.documents, 4, person.number, 255,0);
-              return Promise.reject();
-
+            .then(() => Promise.resolve())
+            .catch(() => {
+              drawCircle(person.documents, 4, person.number, 255, 0);
             });
-          time = randomNumber(5,10) * 1000;
-          drawInTime(time, person.englishLevel, 5, person.number, 0, 255);
+          time = randomNumber(5, 10) * 1000;
+          person.drawEnglishLevel(time, 0, 255);
           const promiseEnglishLevel = promiseTemplate(person, 'englishLevel', time, (englishLevel) => (englishLevel !== 'A1' && englishLevel !== 'A2'))
-            .then(() => {
-              drawCircle(person.englishLevel, 5, person.number, 0, 255);
-              return Promise.resolve(true);
-            }).catch(() => {
-              drawCircle(person.englishLevel, 5, person.number, 255,0);
-              return Promise.reject();
+            .then(() => Promise.resolve())
+            .catch(() => {
+              drawCircle(person.englishLevel, 5, person.number, 255, 0);
 
             });
-          Promise.all([promiseAge, promiseDocuments, promiseEnglishLevel]).then((value) => {
-            console.log(value);
-            persons.push(new Promise((resolve, reject) => {
+          Promise.all([promiseAge, promiseDocuments, promiseEnglishLevel]).then(() => {
+            candidatePromise.push(new Promise((resolve) => {
               setTimeout(() => {
                 resolve(person);
               }, 0);
             }));
-            Promise.race(persons).then((data) => {
+            Promise.race(candidatePromise).then((data) => {
               drawText('WINNER', 1, data.number + 0.2);
-              console.log(data);
             });
           });
         })
@@ -117,7 +130,7 @@ function startRace(candidate) {
 
 }
 
-function drawInTime(time, text, offsetX, offsetY, red, green) {
+export function drawInTime(time, text, offsetX, offsetY, red, green) {
   let angle = 0;
   for (let i = time / 8; i <= time; i += time / 8) {
     angle = angle + 2 * Math.PI / 8;
@@ -125,79 +138,39 @@ function drawInTime(time, text, offsetX, offsetY, red, green) {
   }
 }
 
-function initDraw(candidate) {
+export function initDraw(candidate) {
+  setNodeDisabled('add');
+  setNodeDisabled('init');
+  setNodeDisabled('race', false);
+  // @ts-ignore
+  const context = getNode('canvas').getContext('2d');
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
   candidate.forEach((person) => {
     drawCircle(person.name, 1, person.number, 0, 255);
-    // drawCircle(person.balance, 2, person.number, 255, 255);
-    // drawCircle(person.age, 3, person.number, 255, 255);
-    // drawCircle(person.documents, 4, person.number, 255, 255);
-    // drawCircle(person.englishLevel, 5, person.number, 255, 255);
   });
 }
 
-function drawCircle(text, offsetX, offsetY, red, green, angle = 2 * Math.PI) {
-  const R = 40;
-  const x = 150;
-  const y = 90;
+export function drawCircle(text, offsetX, offsetY, red, green, angle = 2 * Math.PI) {
+  const R = 25;
+  const x = 100;
+  const y = 70;
   // @ts-ignore
   const context = getNode('canvas').getContext('2d');
-  context.fillStyle = `rgb(${red},${green},${0})`;
+  context.fillStyle = `rgb(${red},${green},${150})`;
   context.beginPath();
   context.arc(x * offsetX, y * offsetY, R, 0, angle);
   context.fill();
   drawText(text, offsetX, offsetY);
 }
 
-function drawText(text, offsetX, offsetY) {
-  const x = 150;
-  const y = 90;
+export function drawText(text, offsetX, offsetY) {
+  const x = 100;
+  const y = 70;
   // @ts-ignore
   const context = getNode('canvas').getContext('2d');
   context.fillStyle = `rgb(${0},${0},${0})`;
   context.font = '10px serif';
   context.fillText(text, x * offsetX, y * offsetY);
-}
-
-function getNode(id) {
-  const node = document.getElementById(id);
-  if (node) {
-    return node;
-  }
-  return null;
-}
-
-function randomArrayElement(array, minValue, maxValue) {
-  return array[randomNumber(minValue, maxValue)];
-}
-
-function randomNumber(minValue, maxValue) {
-  return Math.round(Math.random() * (maxValue - minValue) + minValue);
-}
-
-function addListener(id, eventType, callback) {
-  const node = document.getElementById(id);
-  if (node) {
-    node.addEventListener(eventType, callback);
-  }
-}
-
-function setNodeValue(id, callback) {
-  const node = document.getElementById(id);
-  if (node) {
-    // @ts-ignore
-    node.value = callback();
-    return true;
-  }
-  return false;
-}
-
-function getNodeValue(id) {
-  const node = document.getElementById(id);
-  if (node) {
-    // @ts-ignore
-    return node.value;
-  }
-  return '';
 }
 
 
