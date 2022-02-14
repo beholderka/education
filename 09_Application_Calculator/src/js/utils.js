@@ -4,17 +4,8 @@ function addListener(className, eventType, callback) {
         node.addEventListener(eventType, callback);
     }
 }
-function getNodeInnerText(className) {
-    const node = document.querySelector(className);
-    if (node) {
-        return node.innerText;
-    }
-    return '';
-}
-
-
-function setNodeInnerHTML(className,value='') {
-    const node = document.querySelector(className);
+function setNodeInnerHTML(id,value='') {
+    const node = document.getElementById(id);
     if (node) {
         node.innerHTML=value;
         return true;
@@ -22,11 +13,13 @@ function setNodeInnerHTML(className,value='') {
     return false;
 }
 
-function setNodeValue(className,value='') {
-    const node = document.querySelector(className);
+function setNodeValue(id,value='') {
+    const node = document.getElementById(id);
     if (node) {
         node.value=value;
         return true;
     }
     return false;
 }
+
+module.exports = {setNodeInnerHTML,setNodeValue,addListener}

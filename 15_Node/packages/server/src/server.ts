@@ -1,6 +1,8 @@
 import * as http from 'http';
 import { Transform } from 'stream';
+// @ts-ignore
 import * as AWS from 'aws-sdk';
+// @ts-ignore
 import * as dotenv from 'dotenv';
 import sharp from 'sharp';
 import * as fs from 'fs';
